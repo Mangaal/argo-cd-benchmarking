@@ -1,11 +1,12 @@
 # ArgoCD Performance Testing with Kube-Burner
 
-This repository contains the configuration used to test ArgoCD's performance when managing multiple applications across different namespaces.
+This repository contains the configuration that is used to test ArgoCD's performance when managing multiple applications across different namespaces.
 
 ## Prerequisites
 
 - **ArgoCD Installation**: Ensure that ArgoCD is installed and configured in your cluster.
 - **OpenShift Cluster**: This setup is designed for an OpenShift cluster, but it should work on any Kubernetes-compatible environment.
+- **Kube-Burner**: Install Kube-Burner for resource creation and metrics collection. You can find installation instructions on the [Kube-Burner GitHub page](https://github.com/kube-burner/kube-burner).
 
 ## Why Use Kube-Burner?
 
@@ -128,7 +129,7 @@ Below is a sample of metrics data collected using Kube-Burner:
 ### Metric Endpoint Configuration
 
 To configure metric collection, update the metric/ep.yaml file as follows:
-```
+```yaml
 endpoint: <metric-endpoint>
 token: ""
 metrics:
@@ -141,17 +142,17 @@ Replace <metric-endpoint> with the appropriate endpoint for your setup.
 
 ### Template Customization
 
-Customize the YAML templates in the kube-burner-config/template directory before deployment:
+Customize the YAML templates in the template directory before deployment:
 
 - application.yaml: Update the namespace field with ```<argocd-namespace>```.
 
 - namespace.yaml:
-```
+```yaml
 labels:
   argocd.argoproj.io/managed-by: <argocd-namespace>
 ```  
 - rolebinding.yaml:
-```
+```yaml
 subjects:
   - kind: ServiceAccount
     name: <application-controller-service-account-name>
@@ -161,6 +162,6 @@ subjects:
 Replace ```<argocd-namespace>``` and ```<application-controller-service-account-name>``` with the values relevant to your environment.
 
 ### Deploying the Test Setup
-To deploy the applications and start the performance test, navigate to the kube-burner directory and execute:
+To deploy and start the performance test, navigate to the kube-burner directory and execute:
 
 ``` kube-burner init -c config.yaml -e metric/ep.yaml ```
