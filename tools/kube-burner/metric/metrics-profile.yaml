@@ -1,0 +1,34 @@
+# Metrics Profile for ArgoCD Performance Testing
+
+# CPU Usage of ArgoCD Application Controller
+- query: irate(process_cpu_seconds_total{container="argocd-application-controller",namespace=~".+"}[1m])
+  metricName: argocdAppControllerCPU
+
+# Memory Usage of ArgoCD Application Controller
+- query: go_memstats_heap_alloc_bytes{container="argocd-application-controller",namespace=~".+"}
+  metricName: argocdAppControllerHeapAllocMemory
+
+- query: go_memstats_heap_inuse_bytes{container="argocd-application-controller",namespace=~".+"}
+  metricName: argocdAppControllerHeapInuseMemory
+
+
+# Number of k8s resource objects in the cache
+- query: sum(argocd_cluster_api_resource_objects{namespace=~".+"})
+  metricName: argocdClusterApiResourceObjects
+
+# Number of monitored Kubernetes API resources
+- query: sum(argocd_cluster_api_resources{namespace=~".+"}) 
+  metricName: argocdClusterApiResources
+
+# Total IO Operations of ArgoCD Application Controller
+- query: sum(rate(container_fs_reads_total{pod=~"openshift-gitops-application-controller-.*",namespace=~".+"}[1m]))+ sum(rate(container_fs_writes_total{pod=~"openshift-gitops-application-controller-.*",namespace=~".+"}[1m]))
+  metricName: argocdAppControllerIO
+  
+
+#  ArgoCD Pending Kubectl Exec
+- query: sum(argocd_kubectl_exec_pending{namespace=~".+"})
+  metricName: argocdPendingKubectlExec
+
+
+  
+
