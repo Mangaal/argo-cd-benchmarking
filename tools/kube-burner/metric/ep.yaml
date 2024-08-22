@@ -1,7 +1,0 @@
-- endpoint: <metric-endpoint>
-  token: ""
-  metrics:
-  - metric/metrics-profile.yaml
-  indexer:
-    type: local
-    metricsDirectory: my-metrics
