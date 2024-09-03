@@ -7,36 +7,27 @@ jobs:
   # Job to create Namespaces, Roles, and RoleBindings
   - name: create-namespaces
     jobIterations: 100
-    namespace: kube-burner-argocd-test
-    namespacedIterations: true
     cleanup: false
-    iterationsPerNamespace: 1
-    qps: 50  # Increased qps to handle more requests
-    burst: 100  # Increased burst to allow higher initial throughput
+    qps: 10  # Increased qps to handle more requests
+    burst: 50 # Increased burst to allow higher initial throughput
     objects:
       - kind: Namespace
         objectTemplate: template/namespace.yaml
         replicas: 1
   - name: create-role
     jobIterations: 100
-    namespace: kube-burner-argocd-test
-    namespacedIterations: true
     cleanup: false
-    iterationsPerNamespace: 1
-    qps: 50
-    burst: 100
+    qps: 10
+    burst: 50
     objects:
       - kind: Role
         objectTemplate: template/role.yaml
         replicas: 1
   - name: create-rolebinding
     jobIterations: 100
-    namespace: kube-burner-argocd-test
-    namespacedIterations: true
     cleanup: false
-    iterationsPerNamespace: 1
-    qps: 50
-    burst: 100
+    qps: 10
+    burst: 50
     objects:
       - kind: RoleBinding
         objectTemplate: template/rolebinding.yaml
@@ -44,13 +35,10 @@ jobs:
   # Job to create ArgoCD applications
   - name: create-applications
     jobIterations: 100
-    namespace: kube-burner-argocd-test
-    namespacedIterations: true
     cleanup: false
-    iterationsPerNamespace: 1
     waitWhenFinished: true
-    qps: 50
-    burst: 100
+    qps: 10
+    burst: 50
     objects:
       - kind: Application
         objectTemplate: template/application.yaml
