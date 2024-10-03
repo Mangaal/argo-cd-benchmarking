@@ -18,12 +18,12 @@ The following example illustrates the wait configuration used in this setup:
 
 ```yaml
 objects:
-  - kind: Application
-    objectTemplate: template/application.yaml
-    replicas: 1
-    waitOptions:
-      kind: Deployment
-      labelSelector: {kube-burner: argocd-performance-test}
+      - kind: Application
+        objectTemplate: template/application.yaml
+        replicas: 1
+        waitOptions:
+          forCondition: "Synced"
+          customStatusPath: ".operationState.syncResult.resources[].status"
  ```
 
 ### Kube-Burner Configuration Details
