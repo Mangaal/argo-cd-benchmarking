@@ -6,9 +6,9 @@ metadata:
 spec:
   project: default
   source:
-    repoURL: https://github.com/Mangaal/argocd-performance-test
+    repoURL: https://github.com/argoproj-labs/argocd-performance-test
     targetRevision: HEAD
-    path: test-resources
+    path: tools/kube-burner/sample-test-resource
   destination:
     server: https://kubernetes.default.svc
     namespace: argocd-test-{{.Iteration}}

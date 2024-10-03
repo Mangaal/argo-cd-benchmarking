@@ -44,5 +44,5 @@ jobs:
         objectTemplate: template/application.yaml
         replicas: 1
         waitOptions:
-          kind: Deployment
-          labelSelector: {kube-burner: argocd-performance-test}
+          forCondition: "Synced"
+          customStatusPath: ".operationState.syncResult.resources[].status"

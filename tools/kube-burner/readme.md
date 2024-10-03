@@ -10,7 +10,7 @@ This repository contains the configuration that is used to test ArgoCD's perform
 
 ## Why Use Kube-Burner?
 
-[Kube-Burner](https://kube-burner.github.io/kube-burner/latest/) is a versatile tool that creates resources, waits for them to reach a desired state, and collects relevant metrics. This makes it ideal for performance testing and benchmarking. While Kube-Burner cannot directly check or wait for ArgoCD applications to sync, it can monitor the child resources created by ArgoCD using labels and collect the necessary metrics.
+[Kube-Burner](https://kube-burner.github.io/kube-burner/latest/) is a versatile tool that creates resources, waits for them to reach a desired state, and collects relevant metrics. This makes it ideal for performance testing and benchmarking. In the context of ArgoCD, Kube-Burner can efficiently manage the lifecycle of ArgoCD applications by creating them based on predefined templates, waiting for their status to meet specific conditions (such as synchronization), and gathering key metrics. For example, the configuration below specifies the creation of ArgoCD Application resources, waits until they are in a "Synced" state using the customStatusPath for detailed status checks, and collects relevant metrics for performance analysis:
 
 ### Wait Configuration Example
 
