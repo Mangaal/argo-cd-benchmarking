@@ -12,6 +12,6 @@ This tooling is built on nodejs and utilizes various AWS tools to deploy and run
 
 ### 2.  Kube-Burner - [Link](tools/kube-burner)
 
-[Kube-Burner](https://kube-burner.github.io/kube-burner/latest/) is a resource creation and metrics collection tool. It is used to test ArgoCD performance by creating multiple ArgoCD Applications and collecting performance metrics such as CPU, memory, and API server requests. For detailed setup and usage, check the [Kube-Burner README](tools/kube-burner/README.md).
+[Kube-Burner](https://kube-burner.github.io/kube-burner/latest/) is a resource creation and metrics collection tool. It is used to test ArgoCD performance by creating multiple ArgoCD Applications and collecting performance metrics such as CPU, memory, and API server requests. For detailed setup and usage, check the [Kube-Burner README](tools/kube-burner/readme.md).
 
 
